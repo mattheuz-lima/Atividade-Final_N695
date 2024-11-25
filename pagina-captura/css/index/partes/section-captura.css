@@ -34,6 +34,22 @@ section.captura .quadro h1 {
 section.captura .quadro h1 span {
   color: var(--cor-principal);
 }
+
+/*Resposividade para alinhamento de texto*/
+
+@media (max-width: 768px) {
+  section.captura .quadro h1 {
+    font-size: clamp(2rem, 1vw, 2rem);
+    text-align: center;
+  }
+  
+  section.captura .quadro p{
+    text-align: center;
+  }
+
+}
+
+
 section.captura .quadro p {
   font-family: 'montserrat-medium';
   font-size: clamp(1rem, 1vw, 1.2rem);
