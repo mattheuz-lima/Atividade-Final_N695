@@ -98,6 +98,18 @@ main {
     margin-bottom: 20px;
 }
 
+
+footer {
+    background-color: #222fe6;
+    padding: 2px;
+    text-align: center;
+}
+
+footer p{
+    color: #ffff;
+    
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .main-content {
