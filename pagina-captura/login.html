@@ -41,26 +41,27 @@
     <h1>Faça Login na sua conta </h1>
     <p>Acesse com seus dados.</p>
     <!-- Formulário -->
-    <form>
-      <!-- Campo Nome -->
-      
+    <form id="loginForm">
       <!-- Campo E-mail -->
-      <label>E-mail</label>
+      <label for="email">E-mail</label>
       <div class="input">
-        <img src="./arquivos/index/email.svg">
-        <input type="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
-      </div>
-      <!-- Campo Whatsapp -->
-      <label>Senha</label>
-      <div class="input">
-        <img src="./arquivos/index/passwords.png">
-        <input type="password" autocomplete="current-password" placeholder="Crie sua senha" spellcheck="false" required>
-      </div>
+        <img src="./arquivos/index/email.svg" alt="Ícone E-mail">
       
+        <input type="email" id="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
+      </div>
+    
+      <!-- Campo Senha -->
+      <label for="password">Senha</label>
+      <div class="input">
+        <img src="./arquivos/index/passwords.png" alt="Ícone Senha">
+        <input type="password" id="password" autocomplete="current-password" placeholder="Digite sua senha" spellcheck="false" required>
+      </div>
+    
       <!-- Botão para enviar -->
       <button type="submit">ACESSAR CONTA</button>
-      <a href="/pagina-captura/cadastro.html" target="_blank" id="LinkLogin">Cadastre-se</a>
+      <a href="/pagina-captura/cadastro.html" target="_blank" id="LinkCadastro">Cadastre-se</a>
     </form>
+    
   </div>
   <!-- Circulo -->
   <div class="circulo"></div>
@@ -77,6 +78,7 @@
   </footer>
 
   <!-- Importação do JAVASCRIPT -->
+   <script src="./js/login.js"></script>
   <script src="./js/bloquear-arrasta.js"></script>
   <script src="./js/slide.js"></script>
   <script src="./js/duvidas.js"></script>

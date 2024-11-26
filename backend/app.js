@@ -45,3 +45,34 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+
+/* ROTA PARA VERIFICAR DADOS CADASTRADOS E PERMITIT LOGIN*/
+
+const jwt = require('jsonwebtoken'); // Para gerar o token
+
+// Rota de login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Verifica se o usuário existe com o e-mail fornecido
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'E-mail ou senha inválidos' });
+    }
+
+    // Compara a senha fornecida com a senha no banco
+    if (user.password !== password) {  // Comparando a senha em texto simples
+      return res.status(400).json({ message: 'E-mail ou senha inválidos' });
+    }
+
+    // Se as senhas coincidirem, gera um token JWT
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Retorna o token para o frontend
+    res.json({ message: 'Login bem-sucedido!', token });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro no login. Tente novamente!' });
+  }
+});
