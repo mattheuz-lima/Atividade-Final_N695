@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken'); // Mantenha apenas esta linha no início
+
 require('dotenv').config(); // Carrega as variáveis do arquivo .env
 
 // Conectar ao MongoDB
@@ -26,9 +28,7 @@ const User = mongoose.model('User', new mongoose.Schema({
   password: { type: String, required: true },
 }));
 
-
-// ROTA PARA CADASTRAR O USUARIO NO BANCO DE DADOS MONGO DB
-
+// ROTA PARA CADASTRAR O USUÁRIO NO BANCO DE DADOS MONGO DB
 app.post('/users', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -40,39 +40,41 @@ app.post('/users', async (req, res) => {
   }
 });
 
-// Inicia o servidor
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
-
-
-/* ROTA PARA VERIFICAR DADOS CADASTRADOS E PERMITIT LOGIN*/
-
-const jwt = require('jsonwebtoken'); // Para gerar o token
-
-// Rota de login
+// ROTA PARA VERIFICAR DADOS CADASTRADOS E PERMITIR LOGIN
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
+
+  console.log("Dados recebidos no login:", { email, password });
 
   try {
     // Verifica se o usuário existe com o e-mail fornecido
     const user = await User.findOne({ email });
     if (!user) {
+      console.log("Usuário não encontrado para o e-mail:", email);
       return res.status(400).json({ message: 'E-mail ou senha inválidos' });
     }
+
+    console.log("Usuário encontrado no banco:", user);
 
     // Compara a senha fornecida com a senha no banco
-    if (user.password !== password) {  // Comparando a senha em texto simples
+    if (user.password !== password) {
+      console.log("Senha incorreta para o e-mail:", email);
       return res.status(400).json({ message: 'E-mail ou senha inválidos' });
     }
 
-    // Se as senhas coincidirem, gera um token JWT
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    console.log("Login bem-sucedido para o e-mail:", email);
 
-    // Retorna o token para o frontend
+    // Gera o token JWT
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ message: 'Login bem-sucedido!', token });
   } catch (error) {
+    console.error('Erro no login:', error);
     res.status(500).json({ message: 'Erro no login. Tente novamente!' });
   }
+});
+
+// Inicia o servidor
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
