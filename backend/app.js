@@ -26,7 +26,9 @@ const User = mongoose.model('User', new mongoose.Schema({
   password: { type: String, required: true },
 }));
 
-// Rota para cadastrar usuário
+
+// ROTA PARA CADASTRAR O USUARIO NO BANCO DE DADOS MONGO DB
+
 app.post('/users', async (req, res) => {
   try {
     const { name, email, password } = req.body;
