@@ -40,30 +40,63 @@
     <h1>Cadastre-se no curso de Front-End </h1>
     <p>Faça sua conta e garanta sua evolução carreira como Dev.</p>
     <!-- Formulário -->
-    <form>
+    <form id="signupForm">
       <!-- Campo Nome -->
       <label>Nome</label>
       <div class="input">
         <img src="./arquivos/index/icone-perfil-branco.png">
-        <input type="text" autocomplete="name" placeholder="João Silva" spellcheck="false" required>
+        <input type="text" id="name" autocomplete="name" placeholder="João Silva" spellcheck="false" required>
       </div>
       <!-- Campo E-mail -->
       <label>E-mail</label>
       <div class="input">
         <img src="./arquivos/index/email.svg">
-        <input type="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
+        <input type="email" id="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
       </div>
-      <!-- Campo Whatsapp -->
+      <!-- Campo Senha -->
       <label>Senha</label>
       <div class="input">
         <img src="./arquivos/index/passwords.png">
-        <input type="password" autocomplete="current-password" placeholder="Crie sua senha" spellcheck="false" required>
+        <input type="password" id="password" autocomplete="current-password" placeholder="Crie sua senha" spellcheck="false" required>
       </div>
       
       <!-- Botão para enviar -->
       <button type="submit">CADASTRE-SE</button>
       <a href="/pagina-captura/login.html" target="_blank" id="LinkLogin">Já tenho conta</a>
     </form>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // Captura o formulário
+      const form = document.getElementById('signupForm');
+    
+      // Adiciona um evento de escuta para o envio do formulário
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita o comportamento padrão do formulário
+    
+        // Obtém os valores dos campos
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+    
+        try {
+          // Faz a requisição POST para o servidor usando Axios
+          const response = await axios.post('http://localhost:3000/users', {
+            name,
+            email,
+            password,
+          });
+    
+          // Mostra mensagem de sucesso
+          alert(response.data.message);
+        } catch (error) {
+          // Mostra mensagem de erro
+          alert('Erro ao cadastrar usuário. Tente novamente!');
+          console.error(error);
+        }
+      });
+    </script>
+    
   </div>
   <!-- Circulo -->
   <div class="circulo"></div>
