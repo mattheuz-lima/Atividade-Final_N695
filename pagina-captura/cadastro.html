@@ -39,34 +39,42 @@
   <div class="quadro">  
     <h1>Cadastre-se no curso de Front-End </h1>
     <p>Faça sua conta e garanta sua evolução carreira como Dev.</p>
+
+
+  
     <!-- Formulário -->
-    <form id="signupForm">
-      <!-- Campo Nome -->
-      <label>Nome</label>
-      <div class="input">
-        <img src="./arquivos/index/icone-perfil-branco.png">
-        <input type="text" id="name" autocomplete="name" placeholder="João Silva" spellcheck="false" required>
-      </div>
-      <!-- Campo E-mail -->
-      <label>E-mail</label>
-      <div class="input">
-        <img src="./arquivos/index/email.svg">
-        <input type="email" id="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
-      </div>
-      <!-- Campo Senha -->
-      <label>Senha</label>
-      <div class="input">
-        <img src="./arquivos/index/passwords.png">
-        <input type="password" id="password" autocomplete="current-password" placeholder="Crie sua senha" spellcheck="false" required>
-      </div>
-      
-      <!-- Botão para enviar -->
-      <button type="submit">CADASTRE-SE</button>
-      <a href="/pagina-captura/login.html" target="_blank" id="LinkLogin">Já tenho conta</a>
-    </form>
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<form id="signupForm">
+
+  <label for="name">Nome</label>
+  <div class="input">
+    <img src="./arquivos/index/icone-perfil-branco.png" alt="Ícone Nome">
+    <input type="text" id="name" autocomplete="name" placeholder="João Silva" spellcheck="false" required>
+  </div>
+ 
+  <label for="email">E-mail</label>
+  <div class="input">
+    <img src="./arquivos/index/email.svg" alt="Ícone E-mail">
+    <input type="email" id="email" autocomplete="email" placeholder="email@email.com" spellcheck="false" required>
+  </div>
+
+  <label for="password">Senha</label>
+  <div class="input">
+    <img src="./arquivos/index/passwords.png" alt="Ícone Senha">
+    <input type="password" id="password" autocomplete="current-password" placeholder="Crie sua senha" spellcheck="false" required>
+  </div>
+
+  <button type="submit">CADASTRE-SE</button>
+ 
+  <a href="/pagina-captura/login.html" target="_blank" id="LinkLogin">Já tenho conta</a>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="/pagina-captura/js/forms.js"></script>
+
     <script>
+
+
       // Captura o formulário
       const form = document.getElementById('signupForm');
     
