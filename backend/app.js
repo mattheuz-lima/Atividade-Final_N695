@@ -93,6 +93,36 @@ app.delete('/users/:userId', async (req, res) => {
 });
 
 
+// ROTA PARA ATUALIZAR OS DADOS CADASTRADOS NO BANCO DE DADOS
+// Recebe o userId na URL (/users/:userId).
+// Recebe os novos dados (name, email, password) do req.body.
+// Usa o findByIdAndUpdate para atualizar o usuário no banco de dados.
+// Retorna o usuário atualizado ou uma mensagem de erro se algo der errado.
+
+app.put('/users/:userId', async (req, res) => {
+  const { userId } = req.params;  // Pega o userId da URL
+  const { name, email, password } = req.body;  // Pega os novos dados enviados pelo frontend
+
+  try {
+    // Atualiza o usuário no banco de dados pelo userId
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { name, email, password },  // Campos a serem atualizados
+      { new: true }  // Retorna o documento atualizado
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    res.json({ message: 'Dados atualizados com sucesso!', user: updatedUser });  // Resposta de sucesso
+  } catch (error) {
+    console.error('Erro ao atualizar dados:', error);  // Log de erro no terminal
+    res.status(500).json({ message: 'Erro ao atualizar os dados. Tente novamente!' });
+  }
+});
+
+
 // Inicia o servidor
 const PORT = 3000;
 app.listen(PORT, () => {

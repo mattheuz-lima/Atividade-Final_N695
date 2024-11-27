@@ -7,7 +7,7 @@ function toggleMenu() {
 // Função para editar perfil
 function editarPerfil() {
     alert("Redirecionando para a edição de perfil...");
-    // Redirecionar para página de edição
+    window.location.href = "/pagina-captura/atualizarDados.html";  // Redireciona para tela de Atualizar dados
 }
 
 // FUNÇÃO PARA DELETAR USUARIO LOGADO - ENVIA A REQUISIÇÃO DELETE PARA O BACKEND
