@@ -1,3 +1,4 @@
+
 /* Estilos Gerais */
 body {
     font-family: Arial, sans-serif;
@@ -56,6 +57,8 @@ header .user-icon {
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+    float: right;
+
 }
 
 header .dropdown-menu {
@@ -98,6 +101,14 @@ main {
     margin-bottom: 20px;
 }
 
+/*ESTILIZANDO EMAIL QUE APARECE DEPOIS DO LOGIN*/
+.email-usuario {
+    font-size: 16px;
+    color: #ffffff;  /* Cor verde */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 
 footer {
     background-color: #222fe6;
@@ -135,7 +146,7 @@ footer p{
         padding: 15px;
     }
 
-     /*OLHA ISSO*/
+   
 
   header .logo {
     font-size: rem;
@@ -156,6 +167,11 @@ footer p{
     margin-bottom: 10px;
     color: #fff;
     
+  }
+
+  .email-usuario{
+    font-size: 11px;
+    text-align: center;
   }
 }
 

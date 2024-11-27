@@ -65,7 +65,7 @@ app.post('/login', async (req, res) => {
     console.log("Login bem-sucedido para o e-mail:", email);
 
     // Gera o token JWT
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ message: 'Login bem-sucedido!', token });
   } catch (error) {
     console.error('Erro no login:', error);
