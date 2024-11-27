@@ -73,6 +73,26 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// ROTA PARA DELETAR USUARIO LOGADO 
+// app.delete: Define a rota DELETE que recebe o userId.
+// findByIdAndDelete: Exclui o usuário no banco com base no userId.
+
+app.delete('/users/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findByIdAndDelete(userId);  // Exclui pelo userId
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+    res.json({ message: 'Usuário excluído com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao excluir usuário:', error);
+    res.status(500).json({ message: 'Erro ao excluir usuário. Tente novamente!' });
+  }
+});
+
+
 // Inicia o servidor
 const PORT = 3000;
 app.listen(PORT, () => {

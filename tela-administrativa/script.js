@@ -10,13 +10,31 @@ function editarPerfil() {
     // Redirecionar para página de edição
 }
 
-// Função para excluir usuário
-function excluirUsuario() {
+// FUNÇÃO PARA DELETAR USUARIO LOGADO - ENVIA A REQUISIÇÃO DELETE PARA O BACKEND
+
+async function excluirUsuario() {
     if (confirm("Tem certeza que deseja excluir este usuário?")) {
-        alert("Usuário excluído com sucesso!");
-        // Aqui seria integrado com backend
+        const token = localStorage.getItem("authToken");  // Recupera o token JWT
+        const decoded = decodificarToken(token);
+        const userId = decoded.userId;  // Pega o userId do token
+
+        try {
+            const response = await axios.delete(`http://localhost:3000/users/${userId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (response.status === 200) {
+                alert("Usuário excluído com sucesso!");
+                localStorage.removeItem("authToken");  // Remove o token do localStorage
+                window.location.href = "/pagina-captura/cadastro.html";  // Redireciona para o cadastro
+            }
+        } catch (error) {
+            console.error("Erro ao excluir usuário:", error);
+            alert("Erro ao excluir usuário. Tente novamente!");
+        }
     }
 }
+
 
 // O login.js deve estar salvando o token JWT no localStorage
 
