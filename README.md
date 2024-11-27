@@ -1,4 +1,4 @@
-# **Projeto de Gestão de Usuários**
+# **PROPOSTA DE ATIVIDADE - DESENVOLVIMENTO PARA PLATAFORMA WEB**
 
 ## **Descrição**
 Este é um **sistema de gestão de usuários**, onde os usuários podem **se cadastrar**, **fazer login**, **editar seus dados** e **excluir sua conta**. A aplicação utiliza **MongoDB** para armazenar os dados dos usuários e **JWT (JSON Web Tokens)** para autenticação e autorização.
